@@ -557,267 +557,242 @@
             }
         }
 
-        // Автоматичне визначення тижня
-       function calculateCurrentWeek() {
-    // 1 вересня 2025
+          // Автоматичне визначення тижня
+  // Автоматичне визначення тижня
+function calculateCurrentWeek() {
     const sept1 = new Date('2025-09-01');
-    const sept1Day = sept1.getDay(); // 0 = неділя, 1 = понеділок, ...
-
-    // Знаходимо понеділок того тижня, де знаходиться 1 вересня
+    const sept1Day = sept1.getDay(); 
     const firstMonday = new Date(sept1);
     firstMonday.setDate(sept1.getDate() - (sept1Day === 0 ? 6 : sept1Day - 1));
 
-    // Поточна дата → беремо понеділок цього тижня
     const now = new Date();
     const currentMonday = new Date(now);
     const currentDay = now.getDay();
     currentMonday.setDate(now.getDate() - (currentDay === 0 ? 6 : currentDay - 1));
 
-    // Різниця в тижнях
     const timeDiff = currentMonday - firstMonday;
     const weeksPassed = Math.floor(timeDiff / (7 * 24 * 60 * 60 * 1000));
 
-    // Номер тижня
     currentWeek = 1 + weeksPassed;
-
-    // 1-й тиждень = парний, 2-й = непарний, і так далі
     currentWeekType = currentWeek % 2 === 0 ? 'even' : 'odd';
-
-    console.log(`Перший понеділок: ${firstMonday.toDateString()}`);
-    console.log(`Поточний понеділок: ${currentMonday.toDateString()}`);
-    console.log(`Тижнів пройшло: ${weeksPassed}`);
-    console.log(`Поточний тиждень: ${currentWeek} (${currentWeekType})`);
 }
 
+// === Мапа офіційних замін субот ===
+const saturdayMap = [
+  { date: '2025-09-27', day: 'monday', parity: 'even' },
+  { date: '2025-10-04', day: 'tuesday', parity: 'even' },
+  { date: '2025-10-11', day: 'wednesday', parity: 'even' },
+  { date: '2025-10-18', day: 'thursday', parity: 'even' },
+  { date: '2025-10-25', day: 'friday', parity: 'even' },
+  { date: '2025-11-01', day: 'monday', parity: 'odd' },
+  { date: '2025-11-08', day: 'tuesday', parity: 'odd' },
+  { date: '2025-11-15', day: 'wednesday', parity: 'odd' },
+  { date: '2025-11-22', day: 'thursday', parity: 'odd' },
+  { date: '2025-11-29', day: 'friday', parity: 'odd' }
+];
 
-        // Встановлення типу тижня
-        function setWeek(type) {
-            if (type === 'auto') {
-                isAutoMode = true;
-                calculateCurrentWeek();
-                document.getElementById('autoBtn').classList.add('active');
-                document.getElementById('oddBtn').classList.remove('active');
-                document.getElementById('evenBtn').classList.remove('active');
-            } else {
-                isAutoMode = false;
-                currentWeekType = type;
-                document.getElementById('autoBtn').classList.remove('active');
-                document.getElementById('oddBtn').classList.toggle('active', type === 'odd');
-                document.getElementById('evenBtn').classList.toggle('active', type === 'even');
-            }
-            
-            updateWeekInfo();
-            renderSchedule();
-        }
+// === Визначення суботи поточного тижня ===
+function getUpcomingSaturdaySubstitution() {
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 0=Нд, 6=Сб
+    const saturday = new Date(today);
+    const daysUntilSaturday = (6 - dayOfWeek + 7) % 7;
+    saturday.setDate(today.getDate() + daysUntilSaturday);
 
-        function updateWeekInfo() {
+    const found = saturdayMap.find(e => {
+        const subDate = new Date(e.date);
+        return subDate.getFullYear() === saturday.getFullYear() &&
+               subDate.getMonth() === saturday.getMonth() &&
+               subDate.getDate() === saturday.getDate();
+    });
+    return found || null;
+}
+
+function setWeek(type) {
+    if (type === 'auto') {
+        isAutoMode = true;
+        calculateCurrentWeek();
+        document.getElementById('autoBtn').classList.add('active');
+        document.getElementById('oddBtn').classList.remove('active');
+        document.getElementById('evenBtn').classList.remove('active');
+    } else {
+        isAutoMode = false;
+        currentWeekType = type;
+        document.getElementById('autoBtn').classList.remove('active');
+        document.getElementById('oddBtn').classList.toggle('active', type === 'odd');
+        document.getElementById('evenBtn').classList.toggle('active', type === 'even');
+    }
+    updateWeekInfo();
+    renderSchedule();
+}
+
+function updateWeekInfo() {
     document.getElementById('weekNumber').textContent = currentWeek;
-    document.getElementById('weekType').textContent = currentWeekType === 'even' ? 'Парний' : 'Непарний';
-    
+    document.getElementById('weekType').textContent =
+        currentWeekType === 'even' ? 'Парний' : 'Непарний';
     if (isAutoMode) {
-        document.getElementById('weekType').innerHTML = 
-            `${currentWeekType === 'even' ? 'Парний' : 'Непарний'} <span style="color: #27ae60; font-size: 0.8em;">(авто)</span>`;
+        document.getElementById('weekType').innerHTML =
+            `${currentWeekType === 'even' ? 'Парний' : 'Непарний'} <span style="color:#27ae60;font-size:0.8em;">(авто)</span>`;
     }
 }
 
+function renderSchedule() {
+    const days = [
+        { key: 'monday', name: '📕 Понеділок', emoji: '🌟' },
+        { key: 'tuesday', name: '📗 Вівторок', emoji: '🔥' },
+        { key: 'wednesday', name: '📘 Середа', emoji: '⚡' },
+        { key: 'thursday', name: '📙 Четвер', emoji: '💻' },
+        { key: 'friday', name: '📒 П\'ятниця', emoji: '🐹' },
+        { key: 'saturday', name: '📓 Субота', emoji: '🔄' }
+    ];
+    const scheduleGrid = document.getElementById('scheduleGrid');
+    scheduleGrid.innerHTML = '';
 
-        // Генерація розкладу
-        function renderSchedule() {
-            const days = [
-                { key: 'monday', name: '📕 Понеділок', emoji: '🌟' },
-                { key: 'tuesday', name: '📗 Вівторок', emoji: '🔥' },
-                { key: 'wednesday', name: '📘 Середа', emoji: '⚡' },
-                { key: 'thursday', name: '📙 Четвер', emoji: '💻' },
-                { key: 'friday', name: '📒 П\'ятниця', emoji: '🐹' },
-                { key: 'saturday', name: '📓 Субота', emoji: '🔄' }
-            ];
+    days.forEach(day => {
+        const dayCard = document.createElement('div');
+        dayCard.className = 'day-card';
+        let dayHTML = `<h2 class="day-title">${day.emoji} ${day.name.split(' ')[1]}</h2>`;
 
-            const scheduleGrid = document.getElementById('scheduleGrid');
-            scheduleGrid.innerHTML = '';
+        // === ЛОГІКА ДЛЯ СУБОТИ ===
+        if (day.key === 'saturday') {
+            const substitution = getUpcomingSaturdaySubstitution();
+            if (!substitution) {
+                dayHTML += `<div style="text-align:center;padding:10px;border-left:4px solid #ccc;background:#f8f8f8;border-radius:10px;margin-bottom:15px;">
+                    <strong>Звичайна субота — занять немає</strong>
+                </div>`;
+            } else {
+                const workdayKey = substitution.day;
+                const workdayName = {
+                    monday:'Понеділок', tuesday:'Вівторок', wednesday:'Середа',
+                    thursday:'Четвер', friday:'Пʼятниця'
+                }[workdayKey];
+                const parityLabel = substitution.parity === 'even' ? 'парний' : 'непарний';
+                dayHTML += `
+                    <div style="text-align:center;margin-bottom:15px;padding:10px;
+                    background:linear-gradient(135deg,#f39c1210,#f39c1205);
+                    border-radius:10px;border-left:4px solid #f39c12;">
+                        <strong>Відпрацювання: ${workdayName} (${parityLabel} тиждень)</strong>
+                    </div>`;
+                const dayClasses = scheduleData[workdayKey] || [];
+                const relevantClasses = dayClasses.filter(cls =>
+                    cls.weeks === 'both' || cls.weeks === substitution.parity
+                );
+                const timeSlots = ['8:00-9:35','9:50-11:25','11:40-13:15','13:30-15:05'];
 
-            days.forEach((day, index) => {
-                const dayCard = document.createElement('div');
-                dayCard.className = 'day-card';
-                
-                let dayHTML = `<h2 class="day-title">${day.emoji} ${day.name.split(' ')[1]}</h2>`;
-                
-              if (day.key === 'saturday') {
-    // === Правильна логіка ротації субот ===
-    // 1 тиждень → непарний понеділок
-    // 2 → непарний вівторок
-    // 3 → непарна середа
-    // 4 → непарний четвер
-    // 5 → непарна пʼятниця
-    // 6 → парний понеділок ... і т.д. по колу
-
-    const workdayKeys = ['monday','tuesday','wednesday','thursday','friday'];
-    const workdayNames = ['Понеділок','Вівторок','Середа','Четвер','Пʼятниця'];
-
-    const rotation = (currentWeek - 1) % 10;      // цикл 0..9
-    const workdayIndex = rotation % 5;            // який день
-    const isEvenSubstitute = rotation >= 5;       // парність заміни
-    const subParity = isEvenSubstitute ? 'even' : 'odd';
-    const workdayKey = workdayKeys[workdayIndex];
-    const workdayName = workdayNames[workdayIndex];
-    const parityLabel = subParity === 'even' ? 'парний' : 'непарний';
-
-    // Заголовок суботи
-    dayHTML += `
-      <div style="text-align:center;margin-bottom:15px;padding:10px;
-      background:linear-gradient(135deg,#f39c1210,#f39c1205);
-      border-radius:10px;border-left:4px solid #f39c12;">
-        <strong>Відпрацювання: ${workdayName} (${parityLabel} тиждень)</strong>
-      </div>`;
-
-    // Беремо розклад відповідного дня потрібної парності
-    const dayClasses = scheduleData[workdayKey] || [];
-    const relevantClasses = dayClasses.filter(cls =>
-        cls.weeks === 'both' || cls.weeks === subParity
-    );
-
-                    // Додаємо всі слоти з 1 по 4
-                    for (let slot = 1; slot <= 4; slot++) {
-                        const slotClass = relevantClasses.find(cls => 
-                            cls.time.startsWith(`${slot}.`)
-                        );
-
-                        if (slotClass) {
-                            const typeClass = slotClass.type === 'none' ? 'no-class' : slotClass.type;
-                            const typeLabel = slotClass.type === 'lab' ? 'Лабораторна' :
-                                            slotClass.type === 'lecture' ? 'Лекція' :
-                                            slotClass.type === 'practice' ? 'Практика' :
-                                            'Вільно';
-                            
-                            dayHTML += `
-                                <div class="class-item ${typeClass}">
-                                    <div class="class-time">${slotClass.time}</div>
-                                    <span class="class-type type-${slotClass.type === 'none' ? 'none' : slotClass.type}">${typeLabel}</span>
-                                    <span class="week-indicator even-week">🔄 Відпр.</span>
-                                    <div class="class-name">${slotClass.name}</div>
-                                    ${slotClass.teacher ? `<div class="class-teacher" onclick="openTeacherContact('${slotClass.teacher}')" title="Написати викладачу">${slotClass.teacher}</div>` : ''}
-                                    <div class="class-links">
-                                        ${slotClass.link ? `<a href="${slotClass.link}" class="class-link meet-link" target="_blank">🎥 Посилання</a>` : ''}
-                                        ${slotClass.googleClass ? `<a href="${slotClass.googleClass}" class="class-link google-class" target="_blank">📚 Classroom</a>` : ''}
-                                    </div>
-                                </div>
-                            `;
-                        } else {
-                            // Порожній слот
-                            const timeSlots = ['8:00-9:35', '9:50-11:25', '11:40-13:15', '13:30-15:05'];
-                            dayHTML += `
-                                <div class="class-item no-class">
-                                    <div class="class-time">${slot}. ${timeSlots[slot-1]}</div>
-                                    <span class="class-type type-none">Вільно</span>
-                                    <div class="class-name">—</div>
-                                </div>
-                            `;
-                        }
-                    }
-                } else {
-                    // Звичайна логіка для будніх днів
-                    const dayClasses = scheduleData[day.key] || [];
-                    const relevantClasses = dayClasses.filter(cls => 
-                        cls.weeks === 'both' || cls.weeks === currentWeekType
+                for (let slot = 1; slot <= 4; slot++) {
+                    const slotClass = relevantClasses.find(cls =>
+                        cls.time.startsWith(`${slot}.`)
                     );
-
-                    // Додаємо всі слоти з 1 по 4
-                    for (let slot = 1; slot <= 4; slot++) {
-                        const slotClass = relevantClasses.find(cls => 
-                            cls.time.startsWith(`${slot}.`)
-                        );
-
-                        if (slotClass) {
-                            const typeClass = slotClass.type === 'none' ? 'no-class' : slotClass.type;
-                            const typeLabel = slotClass.type === 'lab' ? 'Лабораторна' :
-                                            slotClass.type === 'lecture' ? 'Лекція' :
-                                            slotClass.type === 'practice' ? 'Практика' :
-                                            'Вільно';
-                            
-                            dayHTML += `
-                                <div class="class-item ${typeClass}">
-                                    <div class="class-time">${slotClass.time}</div>
-                                    <span class="class-type type-${slotClass.type === 'none' ? 'none' : slotClass.type}">${typeLabel}</span>
-                                    ${slotClass.weeks !== 'both' ? `<span class="week-indicator ${slotClass.weeks === 'odd' ? 'odd' : 'even'}-week">${slotClass.weeks === 'odd' ? '☝️' : '✌️'}</span>` : ''}
-                                    <div class="class-name">${slotClass.name}</div>
-                                    ${slotClass.teacher ? `<div class="class-teacher" onclick="openTeacherContact('${slotClass.teacher}')" title="Написати викладачу">${slotClass.teacher}</div>` : ''}
-                                    <div class="class-links">
-                                        ${slotClass.link ? `<a href="${slotClass.link}" class="class-link meet-link" target="_blank">🎥 Посилання</a>` : ''}
-                                        ${slotClass.googleClass ? `<a href="${slotClass.googleClass}" class="class-link google-class" target="_blank">📚 Classroom</a>` : ''}
-                                    </div>
+                    if (slotClass) {
+                        const typeClass = slotClass.type === 'none' ? 'no-class' : slotClass.type;
+                        const typeLabel =
+                            slotClass.type === 'lab' ? 'Лабораторна' :
+                            slotClass.type === 'lecture' ? 'Лекція' :
+                            slotClass.type === 'practice' ? 'Практика' : 'Вільно';
+                        dayHTML += `
+                            <div class="class-item ${typeClass}">
+                                <div class="class-time">${slotClass.time}</div>
+                                <span class="class-type type-${slotClass.type === 'none' ? 'none' : slotClass.type}">${typeLabel}</span>
+                                <span class="week-indicator ${substitution.parity === 'even' ? 'even' : 'odd'}-week">${parityLabel}</span>
+                                <div class="class-name">${slotClass.name}</div>
+                                ${slotClass.teacher ? `<div class="class-teacher" onclick="openTeacherContact('${slotClass.teacher}')">${slotClass.teacher}</div>` : ''}
+                                <div class="class-links">
+                                    ${slotClass.link ? `<a href="${slotClass.link}" class="class-link meet-link" target="_blank">🎥 Посилання</a>` : ''}
+                                    ${slotClass.googleClass ? `<a href="${slotClass.googleClass}" class="class-link google-class" target="_blank">📚 Classroom</a>` : ''}
                                 </div>
-                            `;
-                        } else {
-                            // Порожній слот
-                            const timeSlots = ['8:00-9:35', '9:50-11:25', '11:40-13:15', '13:30-15:05'];
-                            dayHTML += `
-                                <div class="class-item no-class">
-                                    <div class="class-time">${slot}. ${timeSlots[slot-1]}</div>
-                                    <span class="class-type type-none">Вільно</span>
-                                    <div class="class-name">—</div>
-                                </div>
-                            `;
-                        }
+                            </div>`;
+                    } else {
+                        dayHTML += `
+                            <div class="class-item no-class">
+                                <div class="class-time">${slot}. ${timeSlots[slot-1]}</div>
+                                <span class="class-type type-none">Вільно</span>
+                                <div class="class-name">—</div>
+                            </div>`;
                     }
                 }
+            }
+        } else {
+            // === ЛОГІКА ДЛЯ ЗВИЧАЙНИХ ДНІВ ===
+            const dayClasses = scheduleData[day.key] || [];
+            const relevantClasses = dayClasses.filter(cls =>
+                cls.weeks === 'both' || cls.weeks === currentWeekType
+            );
+            const timeSlots = ['8:00-9:35','9:50-11:25','11:40-13:15','13:30-15:05'];
 
-                dayCard.innerHTML = dayHTML;
-                scheduleGrid.appendChild(dayCard);
-            });
-        }
-
-        // Оновлення часу та тижня
-        function updateTime() {
-            const now = new Date();
-            const options = { 
-                weekday: 'short', 
-                month: 'short', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                timeZone: 'Europe/Kiev'
-            };
-            document.getElementById('currentTime').textContent = 
-                now.toLocaleDateString('uk-UA', options);
-            
-            // Оновлюємо тиждень тільки в авто режимі
-            if (isAutoMode) {
-                const oldWeek = currentWeek;
-                const oldWeekType = currentWeekType;
-                calculateCurrentWeek();
-                
-                if (oldWeek !== currentWeek || oldWeekType !== currentWeekType) {
-                    updateWeekInfo();
-                    renderSchedule();
+            for (let slot = 1; slot <= 4; slot++) {
+                const slotClass = relevantClasses.find(cls =>
+                    cls.time.startsWith(`${slot}.`)
+                );
+                if (slotClass) {
+                    const typeClass = slotClass.type === 'none' ? 'no-class' : slotClass.type;
+                    const typeLabel =
+                        slotClass.type === 'lab' ? 'Лабораторна' :
+                        slotClass.type === 'lecture' ? 'Лекція' :
+                        slotClass.type === 'practice' ? 'Практика' : 'Вільно';
+                    dayHTML += `
+                        <div class="class-item ${typeClass}">
+                            <div class="class-time">${slotClass.time}</div>
+                            <span class="class-type type-${slotClass.type === 'none' ? 'none' : slotClass.type}">${typeLabel}</span>
+                            ${slotClass.weeks !== 'both' ? `<span class="week-indicator ${slotClass.weeks === 'odd' ? 'odd' : 'even'}-week">${slotClass.weeks === 'odd' ? '☝️' : '✌️'}</span>` : ''}
+                            <div class="class-name">${slotClass.name}</div>
+                            ${slotClass.teacher ? `<div class="class-teacher" onclick="openTeacherContact('${slotClass.teacher}')" title="Написати викладачу">${slotClass.teacher}</div>` : ''}
+                            <div class="class-links">
+                                ${slotClass.link ? `<a href="${slotClass.link}" class="class-link meet-link" target="_blank">🎥 Посилання</a>` : ''}
+                                ${slotClass.googleClass ? `<a href="${slotClass.googleClass}" class="class-link google-class" target="_blank">📚 Classroom</a>` : ''}
+                            </div>
+                        </div>`;
+                } else {
+                    dayHTML += `
+                        <div class="class-item no-class">
+                            <div class="class-time">${slot}. ${timeSlots[slot-1]}</div>
+                            <span class="class-type type-none">Вільно</span>
+                            <div class="class-name">—</div>
+                        </div>`;
                 }
             }
         }
 
-        // Підсвічування поточного дня
-        function highlightCurrentDay() {
-            const today = new Date().getDay();
-            const dayCards = document.querySelectorAll('.day-card');
-            
-            // Понеділок = 1, Вівторок = 2, ..., Субота = 6
-            if (today >= 1 && today <= 6) {
-                const cardIndex = today === 6 ? 5 : today - 1; // Субота останньа карточка
-                setTimeout(() => {
-                    dayCards[cardIndex].style.border = '5px solid #667eea';
-                    dayCards[cardIndex].style.boxShadow = '0 20px 40px rgba(102, 126, 234, 0.3)';
-                }, 500);
-            }
-        }
+        dayCard.innerHTML = dayHTML;
+        scheduleGrid.appendChild(dayCard);
+    });
+}
 
-        // Ініціалізація
-        function init() {
-            calculateCurrentWeek();
-            setWeek('auto'); // Починаємо в авто режимі
-            updateTime();
-            setInterval(updateTime, 60000); // Перевіряємо кожну хвилину
-            highlightCurrentDay();
+function updateTime() {
+    const now = new Date();
+    const options = { weekday:'short',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Europe/Kiev' };
+    document.getElementById('currentTime').textContent = now.toLocaleDateString('uk-UA', options);
+    if (isAutoMode) {
+        const oldWeek = currentWeek;
+        const oldType = currentWeekType;
+        calculateCurrentWeek();
+        if (oldWeek !== currentWeek || oldType !== currentWeekType) {
+            updateWeekInfo();
+            renderSchedule();
         }
+    }
+}
 
-        // Запуск
-        init();
+function highlightCurrentDay() {
+    const today = new Date().getDay();
+    const dayCards = document.querySelectorAll('.day-card');
+    if (today >= 1 && today <= 6) {
+        const cardIndex = today === 6 ? 5 : today - 1;
+        setTimeout(() => {
+            dayCards[cardIndex].style.border = '5px solid #667eea';
+            dayCards[cardIndex].style.boxShadow = '0 20px 40px rgba(102,126,234,0.3)';
+        }, 500);
+    }
+}
+
+function init() {
+    calculateCurrentWeek();
+    setWeek('auto');
+    updateTime();
+    setInterval(updateTime, 60000);
+    highlightCurrentDay();
+}
+init();
+
     </script>
 </body>
 
