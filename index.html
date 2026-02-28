@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -370,198 +371,189 @@
         </div>
     </div>
 
-    <script>
-        // Контакти викладачів
-        const teacherContacts = {
-            "викл. Ходовиченко": "https://t.me/MykolaHdv",
-            "Тесленко Павло Олександрович": "https://t.me/pavlo_teslenko",
-            "викл. Літвінов": "mailto:litvinov.v.f@op.edu.ua",
-            "викл. Івченко І.Ю.": "https://t.me/ivchira",
-            "викл. Цапенко Л. Ю.": "mailto:l.e.tsapenko@op.edu.ua",
-            "викл. Ковтун В.В.": "mailto:kovtun.v.v@op.edu.ua",
-            "доц. Журан О.А.": "https://t.me/elena_zhuran",
-            "ств. Узун": "https://t.me/IlliaUzun",
-            "доц. Чередниченко В.А.": "mailto:v.a.cherednychenko@op.edu.ua"
-        };
+   <script>
+  // Контакти викладачів (оновлено)
+  const teacherContacts = {
+    "Івченко І.Ю.": "",
+    "Чередниченко В.А.": "",
+    "Кондратьєв С.Б.": "",
+    "Ковтун В.В": "",
+    "Ковтун В.В.": "",
+    "Ковтун.": "",
+    "Журан": "",
+    "Узун": "",
+    "пр. Бедрій Д.І.": "",
+    "пр. Устенко С.А.": ""
+  };
 
-        // Дані розкладу
-        const scheduleData = {
-            monday: [
-                {
-                    time: "1. 8:00-9:35",
-                    type: "lecture",
-                    name: "Гнучкі технології розробки ІТ-проєктів",
-                    teacher: "викл. Ходовиченко",
-                    link: "https://bit.ly/hodovychenko_zoom",
-                    weeks: "both"
-                },
-                {
-                    time: "2. 9:50-11:25",
-                    type: "lecture",
-                    name: "Методологія УП в ІТ",
-                    teacher: "Тесленко Павло Олександрович",
-                    link: "https://us02web.zoom.us/j/84048195235?pwd=YWh3Q0dsNWx6WWtLZXlNNjR5VUN2UT09",
-                    weeks: "both"
-                }
-            ],
-            tuesday: [
-                {
-                    time: "2. 9:50-11:25",
-                    type: "lab",
-                    name: "Хмарні технології",
-                    teacher: "викл. Літвінов",
-                    link: "https://meet.google.com/uhy-bdqv-pkn",
-                     googleClass: "https://classroom.google.com/c/ODE0ODE5MTk3Njc2?cjc=ihzj76mo",
-                    weeks: "odd"
-                },
-                {
-                    time: "2. 9:50-11:25",
-                    type: "lecture",
-                    name: "Хмарні технології",
-                    teacher: "викл. Літвінов",
-                    link: "https://meet.google.com/uhy-bdqv-pkn",
-                     googleClass: "https://classroom.google.com/c/ODE0ODE5MTk3Njc2?cjc=ihzj76mo",
-                     weeks: "even"
-                },
-                {
-                    time: "3. 11:40-13:15",
-                    type: "lecture",
-                    name: "Управління ризиками ІТ проєктів",
-                    teacher: "викл. Івченко І.Ю.",
-                    link: "https://meet.google.com/wgh-uqyp-pyd",
-                    googleClass: "https://classroom.google.com/c/NzYwMjEyMjAxNTM0?cjc=gayjlz67",
-                    weeks: "both"
-                },
-                {
-                    time: "4. 13:30-15:05",
-                    type: "lab",
-                    name: "Гнучкі технології розробки ІТ-проєктів",
-                    teacher: "викл. Ходовиченко",
-                    link: "https://bit.ly/hodovychenko_zoom",
-                    weeks: "odd"
-                },
-                {
-                    time: "4. 13:30-15:05",
-                    type: "lab",
-                    name: "Управління ризиками ІТ проєктів",
-                    teacher: "викл. Івченко І.Ю.",
-                    link: "https://meet.google.com/wgh-uqyp-pyd",
-                    googleClass: "https://classroom.google.com/c/NzYwMjEyMjAxNTM0?cjc=gayjlz67",
-                    weeks: "even"
-                }
-            ],
-            wednesday: [
-                {
-                    time: "1. 8:00-9:35",
-                    type: "practice",
-                    name: "Іноземна мова за проф. спрямуванням",
-                    teacher: "викл. Цапенко Л. Ю.",
-                    link: "https://meet.google.com/hok-khmm-hhu",
-                    googleClass: "https://classroom.google.com/c/ODA3NjYwNDEzNjky",
-                    weeks: "both"
-                }
-            ],
-            thursday: [
-                {
-                    time: "1. 8:00-9:35",
-                    type: "lab",
-                    name: "Інжиніринг даних",
-                    teacher: "викл. Ковтун В.В.",
-                    link: "https://us02web.zoom.us/j/88696773669?pwd=1x8TMJN4rdn7xRC8G0a2LKfPc5Jw9P.1",
-                   googleClass: "https://classroom.google.com/c/ODA4OTI0MDY5OTg3",
-                    weeks: "odd"
-                },
-                {
-                    time: "1. 8:00-9:35",
-                    type: "lecture",
-                    name: "Інжиніринг даних",
-                    teacher: "викл. Ковтун В.В.",
-                    link: "https://us02web.zoom.us/j/88696773669?pwd=1x8TMJN4rdn7xRC8G0a2LKfPc5Jw9P.1",
-                   googleClass: "https://classroom.google.com/c/ODA4OTI0MDY5OTg3",
-                    weeks: "even"
-                },
-                {
-                    time: "2. 9:50-11:25",
-                    type: "lecture",
-                    name: "Методологія УП в ІТ",
-                    teacher: "доц. Журан О.А.",
-                    link: "https://meet.google.com/wfr-eauz-ewx",
-                  googleClass: "https://classroom.google.com/c/NzgwNjE3OTgxMDA3",
-                    weeks: "both"
-                }
-            ],
-            friday: [
-                {
-                    time: "2. 9:50-11:25",
-                    type: "lab",
-                    name: "Високорівневе програмування",
-                    teacher: "ств. Узун",
-                    link: "https://meet.google.com/hmt-fpdf-qci",
-                    weeks: "odd"
-                },
-                {
-                    time: "2. 9:50-11:25",
-                    type: "lecture",
-                    name: "Високорівневе програмування",
-                    teacher: "ств. Узун",
-                    link: "https://meet.google.com/hmt-fpdf-qci",
-                    weeks: "even"
-                },
-                {
-                    time: "3. 11:40-13:15",
-                    type: "none",
-                    name: "—",
-                    teacher: "",
-                    link: "",
-                    weeks: "odd"
-                },
-                {
-                    time: "3. 11:40-13:15",
-                    type: "lecture",
-                    name: "Наукові дослідження та винах. діяльність в ІТ галузі",
-                    teacher: "доц. Чередниченко В.А.",
-                    link: "https://meet.google.com/rrm-gffj-mko",
-                    googleClass: "https://classroom.google.com/u/0/c/ODE0Mjg5NTIxMDk0",
-                    weeks: "even"
-                },
-                {
-                    time: "4. 13:30-15:05",
-                    type: "none",
-                    name: "—",
-                    teacher: "",
-                    link: "",
-                    weeks: "odd"
-                },
-                {
-                    time: "4. 13:30-15:05",
-                    type: "lab",
-                    name: "Наукові дослідження та винах. діяльність в ІТ",
-                    teacher: "доц. Чередниченко В.А.",
-                    link: "https://meet.google.com/rrm-gffj-mko",                    
-                    googleClass: "https://classroom.google.com/u/0/c/ODE0Mjg5NTIxMDk0",
-                    weeks: "even"
-                }
-            ]
-        };
+  // Дані розкладу (оновлено під твої дані)
+  const scheduleData = {
+    monday: [
+      {
+        time: "1. 8:00-9:35",
+        type: "lecture",
+        name: "Інтелектуальні технології data mining в управління ІТ-проєктами",
+        teacher: "Івченко І.Ю.",
+        link: "https://meet.google.com/tbe-ytja-nqx",
+        weeks: "both"
+      },
+      {
+        time: "2. 9:50-11:25",
+        type: "lecture",
+        name: "Стратегічний аналіз та основи інноваційного підприємн.",
+        teacher: "Чередниченко В.А.",
+        link: "https://meet.google.com/nno-kwfm-spk",
+       googleClass: "https://classroom.google.com/c/ODQ1MDM0NTgyOTIx",
+  
+        weeks: "odd"
+      },
+      {
+        time: "2. 9:50-11:25",
+        type: "lab",
+        name: "Стратегічний аналіз та основи інноваційного підприємн.",
+        teacher: "Чередниченко В.А.",
+        link: "https://meet.google.com/nno-kwfm-spk",
+        googleClass: "https://classroom.google.com/c/ODQ1MDM0NTgyOTIx",
+          weeks: "even"
+      },
+      {
+        time: "3. 11:40-13:15",
+        type: "lecture",
+        name: "Тестування ІТ продуктів",
+        teacher: "Кондратьєв С.Б.",
+        link: "https://meet.google.com/jrfrjju-vsd",
+        weeks: "both"
+      }
+    ],
 
-        // Поточний тиждень (починається з 1-го як парний)
-        let currentWeek = 1;
-        let currentWeekType = 'even';
-        let isAutoMode = true;
+    tuesday: [
+      {
+        time: "1. 8:00-9:35",
+        type: "lab",
+        name: "Управління якістю та вимогами в ІТ проєктах",
+        teacher: "Ковтун.",
+        link: "https://us02web.zoom.us/j/85182816616?pwd=fMzX9G02iG12DKk1xhqbxAbyt2ndms.1",
+        weeks: "odd"
+      },
+      {
+        time: "1. 8:00-9:35",
+        type: "lab",
+        name: "Тестування ІТ продуктів",
+        teacher: "Кондратьєв.",
+        link: "https://meet.google.com/jrfrjju-vsd",
+        weeks: "even"
+      },
+      {
+        time: "2. 9:50-11:25",
+        type: "lecture",
+        name: "Управління якістю та вимогами в ІТ проєктах",
+        teacher: "Ковтун В.В",
+        link: "https://us02web.zoom.us/j/85182816616?pwd=fMzX9G02iG12DKk1xhqbxAbyt2ndms.1",
+        weeks: "both"
+      },
+      {
+        time: "4. 13:30-15:05",
+        type: "none",
+        name: "—",
+        teacher: "",
+        link: "",
+        weeks: "odd"
+      },
+      {
+        time: "4. 13:30-15:05",
+        type: "lab",
+        name: "Інтелектуальні технології data mining в управління ІТ-проєктами",
+        teacher: "доц. Івченко І.Ю. пр. Устенко С.А.",
+        link: "https://meet.google.com/tbe-ytja-nqx",
+        weeks: "even"
+      }
+    ],
 
-        // Функція для відкриття контактів викладачів
-        function openTeacherContact(teacher) {
-            const contact = teacherContacts[teacher];
-            if (contact) {
-                window.open(contact, '_blank');
-            }
-        }
+    wednesday: [
+      {
+        time: "1. 8:00-9:35",
+        type: "none",
+        name: "—",
+        teacher: "",
+        link: "",
+        weeks: "odd"
+      },
+      {
+        time: "1. 8:00-9:35",
+        type: "lab",
+        name: "Планування та контроль виконання в ІТ-проєктах",
+        teacher: "Журан",
+        link: "https://meet.google.com/jui-akiu-bti",
+        googleClass: "https://classroom.google.com/c/ODQ1NDkzNTI2MTEx",
+        weeks: "even"
+      },
+      {
+        time: "2. 9:50-11:25",
+        type: "lecture",
+        name: "Планування та контроль виконання в ІТ-проєктах",
+        teacher: "Журан",
+        link: "https://meet.google.com/jui-akiu-bti",
+        googleClass: "https://classroom.google.com/c/ODQ1NDkzNTI2MTEx",
+        weeks: "both"
+      },
+      {
+        time: "3. 11:40-13:15",
+        type: "lecture",
+        name: "Системи штучного інтелекту в розробці ІТ продукту",
+        teacher: "Узун",
+        link: "https://meet.google.com/rne-witg-dke",
+        googleClass: "https://classroom.google.com/c/ODQ1MjQ5MDM1NDE3?cjc=r2cmseeb",
+        driveLink: "https://drive.google.com/drive/folders/1EmcvKH3-87R8OiPTmfH-bbMiccsjw9GacPvJtm5oxegT9cHnivabhf4DBXVrkXfy1TjqykwM?usp=sharing",
+        weeks: "both"
+      }
+    ],
 
-          // Автоматичне визначення тижня
-  // Автоматичне визначення тижня
-function calculateCurrentWeek() {
+    thursday: [
+      {
+        time: "2. 9:50-11:25",
+        type: "lecture",
+        name: "Управління командою ІТ проєктів",
+        teacher: "пр. Бедрій Д.І.",
+        link: "https://us02web.zoom.us/j/85978736109?pwd=6c2GEdfIaYljMbRjVA5IYkMPUepVZC.1",
+        weeks: "both"
+      },
+      {
+        time: "3. 11:40-13:15",
+        type: "lab",
+        name: "Управління командою ІТ проєктів",
+        teacher: "пр. Бедрій Д.І.",
+        link: "https://us02web.zoom.us/j/85978736109?pwd=6c2GEdfIaYljMbRjVA5IYkMPUepVZC.1",
+        weeks: "odd"
+      },
+      {
+        time: "3. 11:40-13:15",
+        type: "lab",
+        name: "Системи штучного інтелекту в розробці ІТ продукту",
+        teacher: "Узун",
+        link: "https://meet.google.com/rne-witg-dke",
+        googleClass: "https://classroom.google.com/c/ODQ1MjQ5MDM1NDE3?cjc=r2cmseeb",
+        driveLink: "https://drive.google.com/drive/folders/1EmcvKH3-87R8OiPTmfH-bbMiccsjw9GacPvJtm5oxegT9cHnivabhf4DBXVrkXfy1TjqykwM?usp=sharing",
+        weeks: "even"
+      }
+    ],
+
+    // П'ятниця: день курсового проєктування (порожній розклад)
+    friday: []
+  };
+
+  // Поточний тиждень (починається з 1-го як парний)
+  let currentWeek = 1;
+  let currentWeekType = 'even';
+  let isAutoMode = true;
+
+  function openTeacherContact(teacher) {
+    const contact = teacherContacts[teacher];
+    if (contact) window.open(contact, '_blank');
+  }
+
+  function calculateCurrentWeek() {
     const sept1 = new Date('2025-09-01');
-    const sept1Day = sept1.getDay(); 
+    const sept1Day = sept1.getDay();
     const firstMonday = new Date(sept1);
     firstMonday.setDate(sept1.getDate() - (sept1Day === 0 ? 6 : sept1Day - 1));
 
@@ -575,225 +567,230 @@ function calculateCurrentWeek() {
 
     currentWeek = 1 + weeksPassed;
     currentWeekType = currentWeek % 2 === 0 ? 'even' : 'odd';
-}
+  }
 
-// === Мапа офіційних замін субот ===
-const saturdayMap = [
-  { date: '2025-09-27', day: 'monday', parity: 'even' },
-  { date: '2025-10-04', day: 'tuesday', parity: 'even' },
-  { date: '2025-10-11', day: 'wednesday', parity: 'even' },
-  { date: '2025-10-18', day: 'thursday', parity: 'even' },
-  { date: '2025-10-25', day: 'friday', parity: 'even' },
-  { date: '2025-11-01', day: 'monday', parity: 'odd' },
-  { date: '2025-11-08', day: 'tuesday', parity: 'odd' },
-  { date: '2025-11-15', day: 'wednesday', parity: 'odd' },
-  { date: '2025-11-22', day: 'thursday', parity: 'odd' },
-  { date: '2025-11-29', day: 'friday', parity: 'odd' }
-];
+  const saturdayMap = [
+    { date: '2025-09-27', day: 'monday', parity: 'even' },
+    { date: '2025-10-04', day: 'tuesday', parity: 'even' },
+    { date: '2025-10-11', day: 'wednesday', parity: 'even' },
+    { date: '2025-10-18', day: 'thursday', parity: 'even' },
+    { date: '2025-10-25', day: 'friday', parity: 'even' },
+    { date: '2025-11-01', day: 'monday', parity: 'odd' },
+    { date: '2025-11-08', day: 'tuesday', parity: 'odd' },
+    { date: '2025-11-15', day: 'wednesday', parity: 'odd' },
+    { date: '2025-11-22', day: 'thursday', parity: 'odd' },
+    { date: '2025-11-29', day: 'friday', parity: 'odd' }
+  ];
 
-// === Визначення суботи поточного тижня ===
-function getUpcomingSaturdaySubstitution() {
+  function getUpcomingSaturdaySubstitution() {
     const today = new Date();
-    const dayOfWeek = today.getDay(); // 0=Нд, 6=Сб
+    const dayOfWeek = today.getDay();
     const saturday = new Date(today);
     const daysUntilSaturday = (6 - dayOfWeek + 7) % 7;
     saturday.setDate(today.getDate() + daysUntilSaturday);
 
     const found = saturdayMap.find(e => {
-        const subDate = new Date(e.date);
-        return subDate.getFullYear() === saturday.getFullYear() &&
-               subDate.getMonth() === saturday.getMonth() &&
-               subDate.getDate() === saturday.getDate();
+      const subDate = new Date(e.date);
+      return subDate.getFullYear() === saturday.getFullYear() &&
+        subDate.getMonth() === saturday.getMonth() &&
+        subDate.getDate() === saturday.getDate();
     });
     return found || null;
-}
+  }
 
-function setWeek(type) {
+  function setWeek(type) {
     if (type === 'auto') {
-        isAutoMode = true;
-        calculateCurrentWeek();
-        document.getElementById('autoBtn').classList.add('active');
-        document.getElementById('oddBtn').classList.remove('active');
-        document.getElementById('evenBtn').classList.remove('active');
+      isAutoMode = true;
+      calculateCurrentWeek();
+      document.getElementById('autoBtn').classList.add('active');
+      document.getElementById('oddBtn').classList.remove('active');
+      document.getElementById('evenBtn').classList.remove('active');
     } else {
-        isAutoMode = false;
-        currentWeekType = type;
-        document.getElementById('autoBtn').classList.remove('active');
-        document.getElementById('oddBtn').classList.toggle('active', type === 'odd');
-        document.getElementById('evenBtn').classList.toggle('active', type === 'even');
+      isAutoMode = false;
+      currentWeekType = type;
+      document.getElementById('autoBtn').classList.remove('active');
+      document.getElementById('oddBtn').classList.toggle('active', type === 'odd');
+      document.getElementById('evenBtn').classList.toggle('active', type === 'even');
     }
     updateWeekInfo();
     renderSchedule();
-}
+  }
 
-function updateWeekInfo() {
+  function updateWeekInfo() {
     document.getElementById('weekNumber').textContent = currentWeek;
     document.getElementById('weekType').textContent =
-        currentWeekType === 'even' ? 'Парний' : 'Непарний';
+      currentWeekType === 'even' ? 'Парний' : 'Непарний';
     if (isAutoMode) {
-        document.getElementById('weekType').innerHTML =
-            `${currentWeekType === 'even' ? 'Парний' : 'Непарний'} <span style="color:#27ae60;font-size:0.8em;">(авто)</span>`;
+      document.getElementById('weekType').innerHTML =
+        `${currentWeekType === 'even' ? 'Парний' : 'Непарний'} <span style="color:#27ae60;font-size:0.8em;">(авто)</span>`;
     }
-}
+  }
 
-function renderSchedule() {
+  function renderSchedule() {
     const days = [
-        { key: 'monday', name: '📕 Понеділок', emoji: '🌟' },
-        { key: 'tuesday', name: '📗 Вівторок', emoji: '🔥' },
-        { key: 'wednesday', name: '📘 Середа', emoji: '⚡' },
-        { key: 'thursday', name: '📙 Четвер', emoji: '💻' },
-        { key: 'friday', name: '📒 П\'ятниця', emoji: '🐹' },
-        { key: 'saturday', name: '📓 Субота', emoji: '🔄' }
+      { key: 'monday', name: '📕 Понеділок', emoji: '🌟' },
+      { key: 'tuesday', name: '📗 Вівторок', emoji: '🔥' },
+      { key: 'wednesday', name: '📘 Середа', emoji: '⚡' },
+      { key: 'thursday', name: '📙 Четвер', emoji: '💻' },
+      { key: 'friday', name: '📒 П\'ятниця', emoji: '🐹' },
+      { key: 'saturday', name: '📓 Субота', emoji: '🔄' }
     ];
     const scheduleGrid = document.getElementById('scheduleGrid');
     scheduleGrid.innerHTML = '';
 
     days.forEach(day => {
-        const dayCard = document.createElement('div');
-        dayCard.className = 'day-card';
-        let dayHTML = `<h2 class="day-title">${day.emoji} ${day.name.split(' ')[1]}</h2>`;
+      const dayCard = document.createElement('div');
+      dayCard.className = 'day-card';
+      let dayHTML = `<h2 class="day-title">${day.emoji} ${day.name.split(' ')[1]}</h2>`;
 
-        // === ЛОГІКА ДЛЯ СУБОТИ ===
-        if (day.key === 'saturday') {
-            const substitution = getUpcomingSaturdaySubstitution();
-            if (!substitution) {
-                dayHTML += `<div style="text-align:center;padding:10px;border-left:4px solid #ccc;background:#f8f8f8;border-radius:10px;margin-bottom:15px;">
-                    <strong>Звичайна субота — занять немає</strong>
-                </div>`;
-            } else {
-                const workdayKey = substitution.day;
-                const workdayName = {
-                    monday:'Понеділок', tuesday:'Вівторок', wednesday:'Середа',
-                    thursday:'Четвер', friday:'Пʼятниця'
-                }[workdayKey];
-                const parityLabel = substitution.parity === 'even' ? 'парний' : 'непарний';
-                dayHTML += `
-                    <div style="text-align:center;margin-bottom:15px;padding:10px;
-                    background:linear-gradient(135deg,#f39c1210,#f39c1205);
-                    border-radius:10px;border-left:4px solid #f39c12;">
-                        <strong>Відпрацювання: ${workdayName} (${parityLabel} тиждень)</strong>
-                    </div>`;
-                const dayClasses = scheduleData[workdayKey] || [];
-                const relevantClasses = dayClasses.filter(cls =>
-                    cls.weeks === 'both' || cls.weeks === substitution.parity
-                );
-                const timeSlots = ['8:00-9:35','9:50-11:25','11:40-13:15','13:30-15:05'];
+      if (day.key === 'friday') {
+        dayHTML += `
+          <div style="text-align:center;margin-bottom:15px;padding:12px;
+          background:linear-gradient(135deg,#667eea10,#667eea05);
+          border-radius:10px;border-left:4px solid #667eea;">
+            <strong>День курсового проєктування</strong>
+          </div>`;
+      }
 
-                for (let slot = 1; slot <= 4; slot++) {
-                    const slotClass = relevantClasses.find(cls =>
-                        cls.time.startsWith(`${slot}.`)
-                    );
-                    if (slotClass) {
-                        const typeClass = slotClass.type === 'none' ? 'no-class' : slotClass.type;
-                        const typeLabel =
-                            slotClass.type === 'lab' ? 'Лабораторна' :
-                            slotClass.type === 'lecture' ? 'Лекція' :
-                            slotClass.type === 'practice' ? 'Практика' : 'Вільно';
-                        dayHTML += `
-                            <div class="class-item ${typeClass}">
-                                <div class="class-time">${slotClass.time}</div>
-                                <span class="class-type type-${slotClass.type === 'none' ? 'none' : slotClass.type}">${typeLabel}</span>
-                                <span class="week-indicator ${substitution.parity === 'even' ? 'even' : 'odd'}-week">${parityLabel}</span>
-                                <div class="class-name">${slotClass.name}</div>
-                                ${slotClass.teacher ? `<div class="class-teacher" onclick="openTeacherContact('${slotClass.teacher}')">${slotClass.teacher}</div>` : ''}
-                                <div class="class-links">
-                                    ${slotClass.link ? `<a href="${slotClass.link}" class="class-link meet-link" target="_blank">🎥 Посилання</a>` : ''}
-                                    ${slotClass.googleClass ? `<a href="${slotClass.googleClass}" class="class-link google-class" target="_blank">📚 Classroom</a>` : ''}
-                                </div>
-                            </div>`;
-                    } else {
-                        dayHTML += `
-                            <div class="class-item no-class">
-                                <div class="class-time">${slot}. ${timeSlots[slot-1]}</div>
-                                <span class="class-type type-none">Вільно</span>
-                                <div class="class-name">—</div>
-                            </div>`;
-                    }
-                }
-            }
+      // === ЛОГІКА ДЛЯ СУБОТИ ===
+      if (day.key === 'saturday') {
+        const substitution = getUpcomingSaturdaySubstitution();
+        if (!substitution) {
+          dayHTML += `<div style="text-align:center;padding:10px;border-left:4px solid #ccc;background:#f8f8f8;border-radius:10px;margin-bottom:15px;">
+              <strong>Звичайна субота — занять немає</strong>
+          </div>`;
         } else {
-            // === ЛОГІКА ДЛЯ ЗВИЧАЙНИХ ДНІВ ===
-            const dayClasses = scheduleData[day.key] || [];
-            const relevantClasses = dayClasses.filter(cls =>
-                cls.weeks === 'both' || cls.weeks === currentWeekType
-            );
-            const timeSlots = ['8:00-9:35','9:50-11:25','11:40-13:15','13:30-15:05'];
+          const workdayKey = substitution.day;
+          const workdayName = {
+            monday: 'Понеділок', tuesday: 'Вівторок', wednesday: 'Середа',
+            thursday: 'Четвер', friday: 'Пʼятниця'
+          }[workdayKey];
+          const parityLabel = substitution.parity === 'even' ? 'парний' : 'непарний';
+          dayHTML += `
+              <div style="text-align:center;margin-bottom:15px;padding:10px;
+              background:linear-gradient(135deg,#f39c1210,#f39c1205);
+              border-radius:10px;border-left:4px solid #f39c12;">
+                  <strong>Відпрацювання: ${workdayName} (${parityLabel} тиждень)</strong>
+              </div>`;
 
-            for (let slot = 1; slot <= 4; slot++) {
-                const slotClass = relevantClasses.find(cls =>
-                    cls.time.startsWith(`${slot}.`)
-                );
-                if (slotClass) {
-                    const typeClass = slotClass.type === 'none' ? 'no-class' : slotClass.type;
-                    const typeLabel =
-                        slotClass.type === 'lab' ? 'Лабораторна' :
-                        slotClass.type === 'lecture' ? 'Лекція' :
-                        slotClass.type === 'practice' ? 'Практика' : 'Вільно';
-                    dayHTML += `
-                        <div class="class-item ${typeClass}">
-                            <div class="class-time">${slotClass.time}</div>
-                            <span class="class-type type-${slotClass.type === 'none' ? 'none' : slotClass.type}">${typeLabel}</span>
-                            ${slotClass.weeks !== 'both' ? `<span class="week-indicator ${slotClass.weeks === 'odd' ? 'odd' : 'even'}-week">${slotClass.weeks === 'odd' ? '☝️' : '✌️'}</span>` : ''}
-                            <div class="class-name">${slotClass.name}</div>
-                            ${slotClass.teacher ? `<div class="class-teacher" onclick="openTeacherContact('${slotClass.teacher}')" title="Написати викладачу">${slotClass.teacher}</div>` : ''}
-                            <div class="class-links">
-                                ${slotClass.link ? `<a href="${slotClass.link}" class="class-link meet-link" target="_blank">🎥 Посилання</a>` : ''}
-                                ${slotClass.googleClass ? `<a href="${slotClass.googleClass}" class="class-link google-class" target="_blank">📚 Classroom</a>` : ''}
-                            </div>
-                        </div>`;
-                } else {
-                    dayHTML += `
-                        <div class="class-item no-class">
-                            <div class="class-time">${slot}. ${timeSlots[slot-1]}</div>
-                            <span class="class-type type-none">Вільно</span>
-                            <div class="class-name">—</div>
-                        </div>`;
-                }
+          const dayClasses = scheduleData[workdayKey] || [];
+          const relevantClasses = dayClasses.filter(cls =>
+            cls.weeks === 'both' || cls.weeks === substitution.parity
+          );
+          const timeSlots = ['8:00-9:35', '9:50-11:25', '11:40-13:15', '13:30-15:05'];
+
+          for (let slot = 1; slot <= 4; slot++) {
+            const slotClass = relevantClasses.find(cls => cls.time.startsWith(`${slot}.`));
+            if (slotClass) {
+              const typeClass = slotClass.type === 'none' ? 'no-class' : slotClass.type;
+              const typeLabel =
+                slotClass.type === 'lab' ? 'Лабораторна' :
+                  slotClass.type === 'lecture' ? 'Лекція' :
+                    slotClass.type === 'practice' ? 'Практика' : 'Вільно';
+              dayHTML += `
+                  <div class="class-item ${typeClass}">
+                      <div class="class-time">${slotClass.time}</div>
+                      <span class="class-type type-${slotClass.type === 'none' ? 'none' : slotClass.type}">${typeLabel}</span>
+                      <span class="week-indicator ${substitution.parity === 'even' ? 'even' : 'odd'}-week">${parityLabel}</span>
+                      <div class="class-name">${slotClass.name}</div>
+                      ${slotClass.teacher ? `<div class="class-teacher" onclick="openTeacherContact('${slotClass.teacher}')">${slotClass.teacher}</div>` : ''}
+                      <div class="class-links">
+                          ${slotClass.link ? `<a href="${slotClass.link}" class="class-link meet-link" target="_blank">🎥 Посилання</a>` : ''}
+                          ${slotClass.googleClass ? `<a href="${slotClass.googleClass}" class="class-link google-class" target="_blank">📚 Classroom</a>` : ''}
+                          ${slotClass.driveLink ? `<a href="${slotClass.driveLink}" class="class-link drive-link" target="_blank">💿 Drive</a>` : ''}
+                      </div>
+                  </div>`;
+            } else {
+              dayHTML += `
+                  <div class="class-item no-class">
+                      <div class="class-time">${slot}. ${timeSlots[slot - 1]}</div>
+                      <span class="class-type type-none">Вільно</span>
+                      <div class="class-name">—</div>
+                  </div>`;
             }
+          }
         }
+      } else {
+        // === ЛОГІКА ДЛЯ ЗВИЧАЙНИХ ДНІВ ===
+        const dayClasses = scheduleData[day.key] || [];
+        const relevantClasses = dayClasses.filter(cls =>
+          cls.weeks === 'both' || cls.weeks === currentWeekType
+        );
+        const timeSlots = ['8:00-9:35', '9:50-11:25', '11:40-13:15', '13:30-15:05'];
 
-        dayCard.innerHTML = dayHTML;
-        scheduleGrid.appendChild(dayCard);
+        for (let slot = 1; slot <= 4; slot++) {
+          const slotClass = relevantClasses.find(cls => cls.time.startsWith(`${slot}.`));
+          if (slotClass) {
+            const typeClass = slotClass.type === 'none' ? 'no-class' : slotClass.type;
+            const typeLabel =
+              slotClass.type === 'lab' ? 'Лабораторна' :
+                slotClass.type === 'lecture' ? 'Лекція' :
+                  slotClass.type === 'practice' ? 'Практика' : 'Вільно';
+            dayHTML += `
+                <div class="class-item ${typeClass}">
+                    <div class="class-time">${slotClass.time}</div>
+                    <span class="class-type type-${slotClass.type === 'none' ? 'none' : slotClass.type}">${typeLabel}</span>
+                    ${slotClass.weeks !== 'both'
+                      ? `<span class="week-indicator ${slotClass.weeks === 'odd' ? 'odd' : 'even'}-week">${slotClass.weeks === 'odd' ? '☝️' : '✌️'}</span>`
+                      : ''
+                    }
+                    <div class="class-name">${slotClass.name}</div>
+                    ${slotClass.teacher ? `<div class="class-teacher" onclick="openTeacherContact('${slotClass.teacher}')" title="Написати викладачу">${slotClass.teacher}</div>` : ''}
+                    <div class="class-links">
+                        ${slotClass.link ? `<a href="${slotClass.link}" class="class-link meet-link" target="_blank">🎥 Посилання</a>` : ''}
+                        ${slotClass.googleClass ? `<a href="${slotClass.googleClass}" class="class-link google-class" target="_blank">📚 Classroom</a>` : ''}
+                        ${slotClass.driveLink ? `<a href="${slotClass.driveLink}" class="class-link drive-link" target="_blank">💿 Drive</a>` : ''}
+                    </div>
+                </div>`;
+          } else {
+            dayHTML += `
+                <div class="class-item no-class">
+                    <div class="class-time">${slot}. ${timeSlots[slot - 1]}</div>
+                    <span class="class-type type-none">Вільно</span>
+                    <div class="class-name">—</div>
+                </div>`;
+          }
+        }
+      }
+
+      dayCard.innerHTML = dayHTML;
+      scheduleGrid.appendChild(dayCard);
     });
-}
+  }
 
-function updateTime() {
+  function updateTime() {
     const now = new Date();
-    const options = { weekday:'short',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Europe/Kiev' };
+    const options = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Kiev' };
     document.getElementById('currentTime').textContent = now.toLocaleDateString('uk-UA', options);
     if (isAutoMode) {
-        const oldWeek = currentWeek;
-        const oldType = currentWeekType;
-        calculateCurrentWeek();
-        if (oldWeek !== currentWeek || oldType !== currentWeekType) {
-            updateWeekInfo();
-            renderSchedule();
-        }
+      const oldWeek = currentWeek;
+      const oldType = currentWeekType;
+      calculateCurrentWeek();
+      if (oldWeek !== currentWeek || oldType !== currentWeekType) {
+        updateWeekInfo();
+        renderSchedule();
+      }
     }
-}
+  }
 
-function highlightCurrentDay() {
+  function highlightCurrentDay() {
     const today = new Date().getDay();
     const dayCards = document.querySelectorAll('.day-card');
     if (today >= 1 && today <= 6) {
-        const cardIndex = today === 6 ? 5 : today - 1;
-        setTimeout(() => {
-            dayCards[cardIndex].style.border = '5px solid #667eea';
-            dayCards[cardIndex].style.boxShadow = '0 20px 40px rgba(102,126,234,0.3)';
-        }, 500);
+      const cardIndex = today === 6 ? 5 : today - 1;
+      setTimeout(() => {
+        dayCards[cardIndex].style.border = '5px solid #667eea';
+        dayCards[cardIndex].style.boxShadow = '0 20px 40px rgba(102,126,234,0.3)';
+      }, 500);
     }
-}
+  }
 
-function init() {
+  function init() {
     calculateCurrentWeek();
     setWeek('auto');
     updateTime();
     setInterval(updateTime, 60000);
     highlightCurrentDay();
-}
-init();
-
-    </script>
-</body>
-
-</html>
+  }
+  init();
+</script>
