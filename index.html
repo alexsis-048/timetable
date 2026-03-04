@@ -373,173 +373,188 @@
 
    <script>
   // Контакти викладачів (оновлено)
-  const teacherContacts = {
-    "Івченко І.Ю.": "",
-    "Чередниченко В.А.": "",
-    "Кондратьєв С.Б.": "",
-    "Ковтун В.В": "",
-    "Ковтун В.В.": "",
-    "Ковтун.": "",
-    "Журан": "",
-    "Узун": "",
-    "пр. Бедрій Д.І.": "",
-    "пр. Устенко С.А.": ""
-  };
-
+const teacherContacts = {
+  "доц. Івченко І.Ю.": "",
+  "д. Чередниченко В.А.": "",
+  "ств. Кондратьєв С.Б.": "",
+  "ас. Ковтун І.А.": "",
+  "ств. Ковтун В.В.": "",
+  "доц. Журан О.А.": "",
+  "ств. Узун І.С.": "",
+  "пр. Бедрій Д.І.": "",
+  "пр. Устенко С.А.": ""
+};
   // Дані розкладу (оновлено під твої дані)
-  const scheduleData = {
-    monday: [
-      {
-        time: "1. 8:00-9:35",
-        type: "lecture",
-        name: "Інтелектуальні технології data mining в управління ІТ-проєктами",
-        teacher: "Івченко І.Ю.",
-        link: "https://meet.google.com/tbe-ytja-nqx",
-        weeks: "both"
-      },
-      {
-        time: "2. 9:50-11:25",
-        type: "lecture",
-        name: "Стратегічний аналіз та основи інноваційного підприємн.",
-        teacher: "Чередниченко В.А.",
-        link: "https://meet.google.com/nno-kwfm-spk",
-       googleClass: "https://classroom.google.com/c/ODQ1MDM0NTgyOTIx",
-  
-        weeks: "odd"
-      },
-      {
-        time: "2. 9:50-11:25",
-        type: "lab",
-        name: "Стратегічний аналіз та основи інноваційного підприємн.",
-        teacher: "Чередниченко В.А.",
-        link: "https://meet.google.com/nno-kwfm-spk",
-        googleClass: "https://classroom.google.com/c/ODQ1MDM0NTgyOTIx",
-          weeks: "even"
-      },
-      {
-        time: "3. 11:40-13:15",
-        type: "lecture",
-        name: "Тестування ІТ продуктів",
-        teacher: "Кондратьєв С.Б.",
-        link: "https://meet.google.com/jrfrjju-vsd",
-        weeks: "both"
-      }
-    ],
+const scheduleData = {
+  monday: [
+    {
+      time: "1. 8:00-9:35",
+      type: "lecture",
+      name: "Інтелектуальні технології data mining в управління ІТ-проєктами",
+      teacher: "доц. Івченко І.Ю.",
+      link: "https://meet.google.com/tbe-ytja-nqx",
+      googleClass: "https://classroom.google.com/u/1/c/ODQ1MTUwNjQyNjE4",
+      weeks: "both"
+    },
 
-    tuesday: [
-      {
-        time: "1. 8:00-9:35",
-        type: "lab",
-        name: "Управління якістю та вимогами в ІТ проєктах",
-        teacher: "Ковтун.",
-        link: "https://us02web.zoom.us/j/85182816616?pwd=fMzX9G02iG12DKk1xhqbxAbyt2ndms.1",
-        weeks: "odd"
-      },
-      {
-        time: "1. 8:00-9:35",
-        type: "lab",
-        name: "Тестування ІТ продуктів",
-        teacher: "Кондратьєв.",
-        link: "https://meet.google.com/jrfrjju-vsd",
-        weeks: "even"
-      },
-      {
-        time: "2. 9:50-11:25",
-        type: "lecture",
-        name: "Управління якістю та вимогами в ІТ проєктах",
-        teacher: "Ковтун В.В",
-        link: "https://us02web.zoom.us/j/85182816616?pwd=fMzX9G02iG12DKk1xhqbxAbyt2ndms.1",
-        weeks: "both"
-      },
-      {
-        time: "4. 13:30-15:05",
-        type: "none",
-        name: "—",
-        teacher: "",
-        link: "",
-        weeks: "odd"
-      },
-      {
-        time: "4. 13:30-15:05",
-        type: "lab",
-        name: "Інтелектуальні технології data mining в управління ІТ-проєктами",
-        teacher: "доц. Івченко І.Ю. пр. Устенко С.А.",
-        link: "https://meet.google.com/tbe-ytja-nqx",
-        weeks: "even"
-      }
-    ],
+    // 2 пара: непарна лекція / парна лаба (той самий meet + classroom)
+    {
+      time: "2. 9:50-11:25",
+      type: "lecture",
+      name: "Стратегічний аналіз та основи інноваційного підприємн.",
+      teacher: "д. Чередниченко В.А.",
+      link: "https://meet.google.com/nno-kwfm-spk",
+      googleClass: "https://classroom.google.com/c/ODQ1MDM0NTgyOTIx",
+      weeks: "odd"
+    },
+    {
+      time: "2. 9:50-11:25",
+      type: "lab",
+      name: "Стратегічний аналіз та основи інноваційного підприємн.",
+      teacher: "д. Чередниченко В.А.",
+      link: "https://meet.google.com/nno-kwfm-spk",
+      googleClass: "https://classroom.google.com/c/ODQ1MDM0NTgyOTIx",
+      weeks: "even"
+    },
 
-    wednesday: [
-      {
-        time: "1. 8:00-9:35",
-        type: "none",
-        name: "—",
-        teacher: "",
-        link: "",
-        weeks: "odd"
-      },
-      {
-        time: "1. 8:00-9:35",
-        type: "lab",
-        name: "Планування та контроль виконання в ІТ-проєктах",
-        teacher: "Журан",
-        link: "https://meet.google.com/jui-akiu-bti",
-        googleClass: "https://classroom.google.com/c/ODQ1NDkzNTI2MTEx",
-        weeks: "even"
-      },
-      {
-        time: "2. 9:50-11:25",
-        type: "lecture",
-        name: "Планування та контроль виконання в ІТ-проєктах",
-        teacher: "Журан",
-        link: "https://meet.google.com/jui-akiu-bti",
-        googleClass: "https://classroom.google.com/c/ODQ1NDkzNTI2MTEx",
-        weeks: "both"
-      },
-      {
-        time: "3. 11:40-13:15",
-        type: "lecture",
-        name: "Системи штучного інтелекту в розробці ІТ продукту",
-        teacher: "Узун",
-        link: "https://meet.google.com/rne-witg-dke",
-        googleClass: "https://classroom.google.com/c/ODQ1MjQ5MDM1NDE3?cjc=r2cmseeb",
-        driveLink: "https://drive.google.com/drive/folders/1EmcvKH3-87R8OiPTmfH-bbMiccsjw9GacPvJtm5oxegT9cHnivabhf4DBXVrkXfy1TjqykwM?usp=sharing",
-        weeks: "both"
-      }
-    ],
+    {
+      time: "3. 11:40-13:15",
+      type: "lecture",
+      name: "Тестування ІТ продуктів",
+      teacher: "ств. Кондратьєв С.Б.",
+      link: "https://meet.google.com/jrf-dbjh-gab",
+      weeks: "both"
+    }
+  ],
 
-    thursday: [
-      {
-        time: "2. 9:50-11:25",
-        type: "lecture",
-        name: "Управління командою ІТ проєктів",
-        teacher: "пр. Бедрій Д.І.",
-        link: "https://us02web.zoom.us/j/85978736109?pwd=6c2GEdfIaYljMbRjVA5IYkMPUepVZC.1",
-        weeks: "both"
-      },
-      {
-        time: "3. 11:40-13:15",
-        type: "lab",
-        name: "Управління командою ІТ проєктів",
-        teacher: "пр. Бедрій Д.І.",
-        link: "https://us02web.zoom.us/j/85978736109?pwd=6c2GEdfIaYljMbRjVA5IYkMPUepVZC.1",
-        weeks: "odd"
-      },
-      {
-        time: "3. 11:40-13:15",
-        type: "lab",
-        name: "Системи штучного інтелекту в розробці ІТ продукту",
-        teacher: "Узун",
-        link: "https://meet.google.com/rne-witg-dke",
-        googleClass: "https://classroom.google.com/c/ODQ1MjQ5MDM1NDE3?cjc=r2cmseeb",
-        driveLink: "https://drive.google.com/drive/folders/1EmcvKH3-87R8OiPTmfH-bbMiccsjw9GacPvJtm5oxegT9cHnivabhf4DBXVrkXfy1TjqykwM?usp=sharing",
-        weeks: "even"
-      }
-    ],
+  tuesday: [
+    // 1 пара: непарна — Якість/вимоги (лаба, zoom) / парна — Тестування (лаба, meet)
+    {
+      time: "1. 8:00-9:35",
+      type: "lab",
+      name: "Управління якістю та вимогами в ІТ проєктах",
+      teacher: "ас. Ковтун І.А.",
+      link: "https://us02web.zoom.us/j/85182816616?pwd=fMzX9G02iG12DKk1xhqbxAbyt2ndms.1",
+      googleClass: "https://classroom.google.com/c/ODQ3MDQxNzI2NDk0",
+      weeks: "odd"
+    },
+    {
+      time: "1. 8:00-9:35",
+      type: "lab",
+      name: "Тестування ІТ продуктів",
+      teacher: "ств. Кондратьєв С.Б.",
+      link: "https://meet.google.com/jrf-dbjh-gab",
+      weeks: "even"
+    },
 
-    // П'ятниця: день курсового проєктування (порожній розклад)
-    friday: []
-  };
+    {
+      time: "2. 9:50-11:25",
+      type: "lecture",
+      name: "Управління якістю та вимогами в ІТ проєктах",
+      teacher: "ств. Ковтун В.В.",
+      link: "https://us02web.zoom.us/j/85182816616?pwd=fMzX9G02iG12DKk1xhqbxAbyt2ndms.1",
+      googleClass: "https://classroom.google.com/c/ODQ3MDQxNzI2NDk0",
+      weeks: "both"
+    },
+
+    // 3 пара (у тебе її не було в tuesday, зате була помилково в wednesday)
+    {
+      time: "3. 11:40-13:15",
+      type: "lecture",
+      name: "Системи штучного інтелекту в розробці ІТ продукту",
+      teacher: "ств. Узун І.С.",
+      link: "https://meet.google.com/rne-witg-dke",
+      googleClass: "https://classroom.google.com/c/ODQ1MjQ5MDM1NDE3?cjc=r2cmseeb",
+      driveLink: "https://drive.google.com/drive/folders/1EmcvKH3-87R8OiPTmfH-bbMiccsjw9GacPvJtm5oxegT9cHnivabhf4DBXVrkXfy1TjqykwM?usp=sharing",
+      weeks: "both"
+    },
+
+    // 4 пара: непарна — нема / парна — data mining (лаба)
+    {
+      time: "4. 13:30-15:05",
+      type: "none",
+      name: "—",
+      teacher: "",
+      link: "",
+      weeks: "odd"
+    },
+    {
+      time: "4. 13:30-15:05",
+      type: "lab",
+      name: "Інтелектуальні технології data mining в управління ІТ-проєктами",
+      teacher: "доц. Івченко І.Ю. / пр. Устенко С.А.",
+      link: "https://meet.google.com/tbe-ytja-nqx",
+      weeks: "even"
+    }
+  ],
+
+  wednesday: [
+    // 1 пара: непарна — нема / парна — лаба
+    {
+      time: "1. 8:00-9:35",
+      type: "none",
+      name: "—",
+      teacher: "",
+      link: "",
+      weeks: "odd"
+    },
+    {
+      time: "1. 8:00-9:35",
+      type: "lab",
+      name: "Планування та контроль виконання в ІТ-проєктах",
+      teacher: "доц. Журан О.А.",
+      link: "https://meet.google.com/jui-akiu-bti",
+      googleClass: "https://classroom.google.com/c/ODQ1NDkzNTI2MTEx",
+      weeks: "even"
+    },
+
+    {
+      time: "2. 9:50-11:25",
+      type: "lecture",
+      name: "Планування та контроль виконання в ІТ-проєктах",
+      teacher: "доц. Журан О.А.",
+      link: "https://meet.google.com/jui-akiu-bti",
+      googleClass: "https://classroom.google.com/c/ODQ1NDkzNTI2MTEx",
+      weeks: "both"
+    }
+
+    // 3 пари в середу у твоєму текстовому розкладі нема — тому прибрали
+  ],
+
+  thursday: [
+    {
+      time: "2. 9:50-11:25",
+      type: "lecture",
+      name: "Управління командою ІТ проєктів",
+      teacher: "пр. Бедрій Д.І.",
+      link: "https://us02web.zoom.us/j/85978736109?pwd=6c2GEdfIaYljMbRjVA5IYkMPUepVZC.1",
+      weeks: "both"
+    },
+
+    // 3 пара: непарна — лаба (команда) / парна — лаба (ШІ)
+    {
+      time: "3. 11:40-13:15",
+      type: "lab",
+      name: "Управління командою ІТ проєктів",
+      teacher: "пр. Бедрій Д.І.",
+      link: "https://us02web.zoom.us/j/85978736109?pwd=6c2GEdfIaYljMbRjVA5IYkMPUepVZC.1",
+      weeks: "odd"
+    },
+    {
+      time: "3. 11:40-13:15",
+      type: "lab",
+      name: "Системи штучного інтелекту в розробці ІТ продукту",
+      teacher: "ств. Узун І.С.",
+      link: "https://meet.google.com/rne-witg-dke",
+      googleClass: "https://classroom.google.com/c/ODQ1MjQ5MDM1NDE3?cjc=r2cmseeb",
+      driveLink: "https://drive.google.com/drive/folders/1EmcvKH3-87R8OiPTmfH-bbMiccsjw9GacPvJtm5oxegT9cHnivabhf4DBXVrkXfy1TjqykwM?usp=sharing",
+      weeks: "even"
+    }
+  ],
+
+  // П'ятниця: день курсового
+  friday: []
+};
 
   // Поточний тиждень (починається з 1-го як парний)
   let currentWeek = 1;
